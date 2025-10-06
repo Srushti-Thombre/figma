@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Design</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Hamburger/Close Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Figtree', sans-serif;
+            line-height: 1.5;
+            color: #333;
+            overflow-x: hidden; /* Prevent horizontal scroll on mobile */
+        }
+        
+        /* --- Desktop Navbar Styles --- */
+        .navbar-container {
+            width: 100%;
+            background-color: #fff; 
+            padding: 15px 0;
+            position: relative;
+            z-index: 10; 
+        }
+
+        .navbar-content {
+            width: 1440px; 
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; 
+            border-bottom: 1px solid #f0f0f0; 
+            padding-bottom: 5px; 
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        /* Logo Styling */
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .company-logo-icon {
+            width: auto;
+            height: auto;
+            transform: none; 
+            margin-right: 5px;
+            margin-bottom: 0;
+            line-height: 0;
+        }
+
+        .company-logo-icon img {
+            width: 50px;
+            height: auto;
+            display: block;
+        }
+
+        .company-text-group {
+            display: flex;
+            flex-direction: column; 
+            justify-content: center;
+            line-height: 1.1;
+        }
+
+        .company-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #555;
+            text-transform: uppercase;
+        }
+
+        .business-tagline {
+            font-size: 10px;
+            color: #555;
+            font-weight: 400;
+            margin-left: 0; 
+            align-self: flex-start;
+            line-height: 1;
+        }
+
+        /* Navigation Links */
+        .nav-links {
+            height: 42px; 
+            margin-right: auto;
+            margin-left: 120px;
+            display: flex; 
+            align-items: center;
+        }
+
+        .nav-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            width: 519px; 
+            justify-content: space-between;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            padding: 10px 0; 
+            transition: color 0.3s;
+        }
+
+        .nav-links li a:hover {
+            color: #FA1239;
+        }
+
+        .quote-button {
+            width: 147px; 
+            height: 46px; 
+            background-color: #FA1239;
+            color: #fff;
+            border: none;
+            border-radius: 23px;
+            padding: 0 20px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(250, 18, 57, 0.4);
+            background: linear-gradient(180deg, #ff4c6d 0%, #FA1239 100%);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .quote-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 12px rgba(250, 18, 57, 0.6);
+        }
+        
+        /* Hamburger Icon - Hidden by default on desktop */
+        .hamburger-icon {
+            display: none; 
+            font-size: 24px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        /* Mobile Menu Panel - Hidden by default */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 80%; /* Takes 80% of screen width */
+            height: 100%;
+            background-color: #FFE7EB; /* Light pink background */
+            box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+            transform: translateX(100%); /* Start off-screen */
+            transition: transform 0.3s ease-in-out;
+            z-index: 50;
+            padding: 20px;
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .mobile-menu-header .close-icon {
+            font-size: 28px;
+            color: #FA1239;
+            cursor: pointer;
+        }
+
+        .mobile-menu-nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .mobile-menu-nav li {
+            margin-bottom: 20px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .mobile-menu-nav li a {
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            color: #333;
+            display: flex;
+            align-items: center;
+        }
+
+        .mobile-menu-nav li i {
+            color: #FA1239;
+            margin-right: 15px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* FIX: Mobile Contact Button Styling */
+        .mobile-contact-button {
+            width: 100%;
+            height: 46px;
+            background-color: #FA1239;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(250, 18, 57, 0.4);
+            background: linear-gradient(180deg, #ff4c6d 0%, #FA1239 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        /* --- Hero Section Styles --- */
+        .hero {
+            background: radial-gradient(circle, #fdacb9, #FFE7EB);
+            padding: 50px 0 0; 
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            margin-bottom: 20px; 
+        }
+        
+        .hero-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1440px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        
+        /* --- TEXT CONTAINER SHIFT AND WIDTH FIX --- */
+        .text-container {
+            text-align: left;
+            max-width: 40%; 
+            padding: 0 20px 20px 100px;
+        }
+        /* ----------------------------------------- */
+        
+        .text-container h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: rgb(0, 0, 0);
+        }
+        .text-container p {
+            font-size: 18px;
+            color: rgb(0, 0, 0);
+            margin-bottom: 30px;
+            max-width: 400px;
+        }
+        .text-container .buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        /* Button Styles */
+        .text-container button {
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .text-container .btn-resume {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 10px 15px;
+            line-height: 26px;
+            font-size: 16px;
+            display: inline-block;
+            width: 202px;
+            height: 46px;
+            background-color: white;
+            color: #FA1239;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: #FA1239 8px 8px 8px;
+            margin-right: 5px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .text-container .btn-resume:hover, .text-container .btn-contact:hover {
+            transform: translateY(-1px);
+            box-shadow: 8px 8px 8px rgba(0,0,0,0.2);
+        }
+
+        .text-container .btn-contact {
+            width: 157px;
+            height: 46px;
+            background-color: #FA1239;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 22px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: normal;
+            box-shadow: 0 4px 10px rgba(250, 18, 57, 0.4);
+            background: linear-gradient(180deg, #ff4c6d 0%, #FA1239 100%);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .rating span {
+            margin-left: 5px;
+        }
+        
+        /* Image Container & Background Circle */
+        .image-container {
+            max-width: 50%;
+            text-align: right;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            position: relative;
+        }
+        
+        .image-container::before {
+            content: '';
+            position: absolute;
+            top: 50%; 
+            left: 50%;
+            transform: translate(-40%, -50%); 
+            width: 450px; 
+            height: 450px;
+            border-radius: 50%; 
+            border: 5px solid rgba(253, 172, 185, 0.5); 
+            box-shadow: 0 0 0 50px rgba(253, 172, 185, 0.2); 
+            z-index: 0; 
+        }
+        
+        .image-container img {
+            max-width: 506px; 
+            height: auto;
+            vertical-align: bottom;
+            position: relative; 
+            z-index: 1;
+        }
+        
+        /* Floating Frame Styles */
+        .floating-frame {
+            position: absolute;
+            z-index: 5; 
+            width: auto; 
+            height: auto;
+        }
+
+        .floating-frame img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); 
+        }
+
+        /* RATING FRAME POSITION */
+        .rating-frame {
+            top: 55%; 
+            left: 50px; 
+            transform: translateY(-50%); 
+            width: 350px; 
+            height: 117px; 
+        }
+
+        .count-frame {
+            bottom: 20px;
+            right: -10px;
+            width: 270px;
+            height: 133px;
+        }
+
+        /* New Content Section Styles */
+        .content-break {
+            width: 100%;
+            max-width: 1240px; 
+            margin: 0 auto 50px auto;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .what-you-get-tag {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 154px;
+            height: 42px;
+            background-color: #FD92A4;
+            color: #000;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 21px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .main-headline h2 {
+            font-size: 44px;
+            line-height: 55px;
+            font-weight: 600;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-headline .highlight {
+            color: #FA1239;
+        }
+        
+        /* Placard Section Styles */
+        .section {
+            padding: 0 20px 80px;
+            background: #fff;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        .placard {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 300px; 
+            height: 450px;
+            margin-top: 20px;
+            margin-bottom: 50px;
+            transition: all 0.3s;
+        }
+        .placard img {
+            width: 300px;
+            height: 400px;
+            margin-bottom: 15px;
+        }
+        .placard h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            margin-top: 25px;
+        }
+        .placard p {
+            font-size: 14px;
+            color: #666;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+
+
+        /* ======================================= */
+        /* --- MOBILE STYLES (Max Width 1024px) --- */
+        /* ======================================= */
+
+        @media (max-width: 1024px) {
+            
+            /* General Container Changes */
+            .navbar-content, .hero-content {
+                width: 100%;
+                max-width: 900px;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            
+            /* Navbar Toggle FIX */
+            .nav-links, .quote-button {
+                display: none !important; /* Force hide desktop elements */
+            }
+            .hamburger-icon {
+                display: block !important; /* Force show hamburger icon */
+            }
+            .navbar-content {
+                padding-left: 20px;
+                padding-right: 20px;
+                width: 100%;
+            }
+
+            /* Hero Section Redesign (STACKED Layout FIX) */
+            .hero-content { 
+                /* CORRECT: Must be 'column' for Text -> Buttons -> Image order on mobile */
+                flex-direction: column; 
+                text-align: center; 
+            }
+            
+            /* Text Block */
+            .text-container { 
+                max-width: 100%;
+                text-align: center;
+                padding: 0 20px 40px 20px; /* Reset padding for mobile */
+            }
+            .text-container h1 { 
+                font-size: 38px;
+                margin-bottom: 15px;
+            }
+
+            /* Mobile Paragraph Text Fix */
+            #mobile-hero-paragraph {
+                display: block;
+                font-size: 16px;
+                color: #555;
+                padding: 0 10px;
+                margin-bottom: 30px;
+            }
+            #desktop-hero-paragraph {
+                display: none;
+            }
+
+            .text-container .buttons {
+                justify-content: center; /* Center buttons */
+                gap: 15px;
+            }
+            
+            /* Image Block (Full Width) */
+            .image-container { 
+                max-width: 100%; 
+                width: 100%;
+                margin-top: 20px; /* Separates image from buttons */
+                justify-content: center;
+                align-items: flex-end;
+            }
+            .image-container img {
+                max-width: 90%; /* Scale image to fit mobile container */
+                height: auto;
+            }
+            
+            /* Background Circle Resizing/Repositioning */
+            .image-container::before {
+                width: 350px;
+                height: 350px;
+                transform: translate(-50%, -50%);
+            }
+
+            /* Floating Frames Repositioning & Resizing FIX */
+            .floating-frame {
+                /* Aggressively scale down both frames to prevent overlap */
+                transform: scale(0.65); 
+                transform-origin: center center;
+            }
+            
+            /* FIX: Rating Frame (4.9) - Lower left, slightly tucked under the arm */
+            .rating-frame {
+                top: 70%; 
+                left: 10%; 
+            }
+            
+            /* FIX: Count Frame (260+) - Higher and more central, over the chest/shoulder area */
+            .count-frame {
+                bottom: 25%; 
+                right: 0%; 
+            }
+            
+            /* Placard Section Redesign (Vertical Stack) FIX */
+            .section { 
+                flex-direction: column; /* FORCES VERTICAL STACKING */
+                align-items: center; 
+            }
+            .placard { 
+                width: 90%; /* Make placards wider on mobile */
+                height: auto;
+                margin-bottom: 20px;
+            }
+            .placard img {
+                width: 100%; 
+                max-height: 250px;
+                object-fit: contain;
+            }
+            
+            /* Headline Section Fix */
+            .content-break {
+                max-width: 100%;
+            }
+            .main-headline h2 {
+                font-size: 32px;
+                line-height: 40px;
+                padding: 0 10px;
+            }
+            .main-headline h2 br {
+                display: none; /* Remove break for smaller screens */
+            }
+            
+            .floating-frame { display: block; }
+        }
+
+        @media (max-width: 768px) {
+            /* Text Size Adjustments */
+            .text-container h1 { font-size: 32px; }
+            .text-container p { font-size: 16px; }
+            .main-headline h2 { font-size: 28px; line-height: 36px; }
+
+            /* Button Stacking */
+            .text-container .buttons {
+                flex-direction: column;
+            }
+            .text-container .btn-resume, .text-container .btn-contact {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- HEADER/NAVBAR STRUCTURE -->
+    <header class="navbar-container">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="company-logo-icon">
+                    <img src="assets/LOGO.png" alt="Company Logo">
+                </div>
+                <div class="company-text-group">
+                    <span class="company-name">COMPANY</span>
+                    <span class="business-tagline">business tagline</span>
+                </div>
+            </a>
+            
+            <!-- Desktop Nav Links (Hidden on Mobile) -->
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Services</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </nav>
+            
+            <button class="quote-button">Get A Quote</button>
+            
+            <!-- Hamburger Icon (Shown on Mobile) -->
+            <i class="fas fa-bars hamburger-icon" onclick="toggleMenu()"></i>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Panel -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <a href="#" class="logo">
+                <div class="company-logo-icon">
+                    <img src="assets/LOGO.png" alt="Company Logo">
+                </div>
+                <div class="company-text-group">
+                    <span class="company-name" style="color:#FA1239;">COMPANY</span>
+                    <span class="business-tagline">business tagline</span>
+                </div>
+            </a>
+            <i class="fas fa-times close-icon" onclick="toggleMenu()"></i>
+        </div>
+        
+        <nav class="mobile-menu-nav">
+            <ul>
+                <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#"><i class="fas fa-info-circle"></i> About Us</a></li>
+                <li><a href="#"><i class="fas fa-concierge-bell"></i> Our Services</a></li>
+                <li><a href="#"><i class="fas fa-tags"></i> Pricing</a></li>
+                <li><a href="#"><i class="fas fa-question-circle"></i> FAQ</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Mobile Contact Button FIX -->
+        <button class="mobile-contact-button" onclick="window.location.href='#'">CONTACT US</button>
+        
+        <!-- Mobile Rating Display -->
+        <div class="rating" style="display: block; color: #333; margin-top: 20px; text-align: center;">
+            4.9 <i class="fas fa-star" style="color: gold;"></i> <span style="font-size: 16px;">(260+ reviews)</span>
+        </div>
+    </div>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <div class="text-container">
+                <h1>Your Resume <br><span style="color: #FA1239; text-decoration: double underline;">Deserves A Yes</span> Let's <br>Make It Happen</h1>
+                
+                <!-- Paragraph text split for desktop/mobile content -->
+                <p id="desktop-hero-paragraph">If you're wondering how to impress recruiters, optimize your resume with our expert advice and HR-approved templates in 5 mins. Download your resume now!</p>
+
+                <p id="mobile-hero-paragraph" style="display: none;">If Your Resume Isn't Getting Responses, It's Time For An Upgrade. Get An ATS-Optimized Resume Crafted By HR Experts To Help You Land More Interviews. Our Resumes Are Designed To Get Your Foot In The Door And Place Your Name At The Top Of The Shortlist.</p>
+
+                <div class="buttons">
+                    <button class="btn-resume">RESUME PACKAGES</button>
+                    <button class="btn-contact">CONTACT US</button>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="assets/happywoman.png" alt="Person with books">
+                
+                <!-- NEW FLOATING FRAMES START HERE (UPDATED TO USE PNGS) -->
+                
+                <!-- 1. Ratings Frame (4.9) -->
+                <div class="floating-frame rating-frame">
+                    <img src="assets/rating.png" alt="4.9 Instructor Rating Frame">
+                </div>
+
+                <!-- 2. 260+ Count Frame (LIFTED 20px) -->
+                <div class="floating-frame count-frame">
+                    <img src="assets/frame260.png" alt="260+ Online Resumes Created Frame">
+                </div>
+                
+                <!-- NEW FLOATING FRAMES END HERE -->
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: WHAT YOU GET TAG AND HEADLINE -->
+    <section class="content-break">
+        <div class="what-you-get-tag">
+            What You Get
+        </div>
+        <div class="main-headline">
+            <h2>You're Not Just <span class="highlight">Another Applicant</span> And Your <br>Resume Shouldn't Look Like One</h2>
+        </div>
+    </section>
+    <!-- END NEW SECTION -->
+    
+    <section class="section">
+        <div class="placard">
+            <img src="assets/resume.png" alt="Resume Icon">
+            <h3>A Resume Format That Gets You Interviews</h3>
+            <p>Get a professionally written, keyword-optimized resume that lands in recruiter inboxes.</p>
+        </div>
+        <div class="placard">
+            <img src="assets/plane.png" alt="Cover Letter Icon">
+            <h3>A Cover Letter Style That Stands Out Strong</h3>
+            <p>Stand out with a cover letter that speaks directly to the role and reflects your strengths.</p>
+        </div>
+        <div class="placard">
+            <img src="assets/phone.png" alt="LinkedIn Profile Icon">
+            <h3>A LinkedIn Profile That Works For You</h3>
+            <p>Attract the right eyes, start conversations, and show up in recruiter searches.</p>
+        </div>
+        <div class="placard">
+            <img src="assets/talk.png" alt="Interview Strategy Icon">
+            <h3>An Interview Strategy That Builds Confidence</h3>
+            <p>Interview preparation with real HR professionals so you speak clearly confidently.</p>
+        </div>
+    </section>
+    
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('open');
+            // Prevent scrolling when the menu is open
+            document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : 'auto';
+        }
+        
+        // Close menu if a link is clicked
+        const mobileLinks = document.querySelectorAll('.mobile-menu-nav a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMenu();
+            });
+        });
+
+        // Hide desktop paragraph and show mobile paragraph on load if screen is small
+        function updateParagraph() {
+            const desktopP = document.getElementById('desktop-hero-paragraph');
+            const mobileP = document.getElementById('mobile-hero-paragraph');
+            if (window.innerWidth <= 1024) {
+                if (desktopP) desktopP.style.display = 'none';
+                if (mobileP) mobileP.style.display = 'block';
+            } else {
+                if (desktopP) desktopP.style.display = 'block';
+                if (mobileP) mobileP.style.display = 'none';
+            }
+        }
+
+        window.addEventListener('resize', updateParagraph);
+        window.addEventListener('load', updateParagraph);
+    </script>
+</body>
+</html>
