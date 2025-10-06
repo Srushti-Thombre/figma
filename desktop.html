@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Design</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Figtree', sans-serif;
+            line-height: 1.5;
+            color: #333;
+        }
+        
+        .navbar-container {
+            width: 100%;
+            background-color: #fff; 
+            padding: 15px 0;
+            position: relative;
+            z-index: 10; 
+        }
+
+        .navbar-content {
+            width: 1440px; /* User specified width */
+            margin: 0 auto; /* Center the content */
+            display: flex;
+            align-items: center; /* Vertically align items */
+            justify-content: space-between; 
+            border-bottom: 1px solid #f0f0f0; 
+            padding-bottom: 5px; 
+            padding-left: 20px; /* Added padding for smaller screens */
+            padding-right: 20px;
+        }
+
+        /* --- Logo Styling FIX --- */
+        .logo {
+            display: flex;
+            align-items: center; /* Ensures the logo image and text group are vertically aligned */
+            text-decoration: none;
+            color: #333;
+        }
+
+        /* Container for the logo image */
+        .company-logo-icon {
+            /* Reset properties that were conflicting with the <img> */
+            width: auto;
+            height: auto;
+            transform: none; 
+            margin-right: 5px;
+            margin-bottom: 0;
+            line-height: 0; /* Prevents extra line height below the image */
+        }
+
+        .company-logo-icon img {
+            /* Ensure the image scales correctly if needed, matching original implied size */
+            width: 50px; /* You can adjust this size */
+            height: auto;
+            display: block;
+        }
+
+        /* New container for stacking the text */
+        .company-text-group {
+            display: flex;
+            flex-direction: column; /* Stacks COMPANY and business tagline vertically */
+            justify-content: center; /* Centers the text group vertically next to the logo */
+            line-height: 1.1; /* Reduce line spacing */
+        }
+
+        .company-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #555;
+            text-transform: uppercase;
+        }
+
+        .business-tagline {
+            font-size: 10px;
+            color: #555;
+            font-weight: 400;
+            margin-left: 0; 
+            align-self: flex-start;
+            line-height: 1;
+        }
+
+        .nav-links {
+            height: 42px; 
+            margin-right: auto; /* Push the button to the far right */
+            margin-left: 120px; /* Provide space between logo and links */
+            display: flex; 
+            align-items: center;
+        }
+
+        .nav-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            width: 519px; 
+            justify-content: space-between; /* Distribute the links evenly */
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            padding: 10px 0; 
+            transition: color 0.3s;
+        }
+
+        .nav-links li a:hover {
+            color: #FA1239; /* Hover effect */
+        }
+
+        .quote-button {
+            width: 147px; 
+            height: 46px; 
+            
+            background-color: #FA1239; /* User specified base color */
+            color: #fff;
+            border: none;
+            border-radius: 23px; /* Half of height for pill shape */
+            padding: 0 20px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            
+            box-shadow: 0 4px 10px rgba(250, 18, 57, 0.4);
+            background: linear-gradient(180deg, #ff4c6d 0%, #FA1239 100%);
+            transition: transform 0.2s, box-shadow 0.2s;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .quote-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 12px rgba(250, 18, 57, 0.6);
+        }
+        .hero {
+            background: radial-gradient(circle, #fdacb9, #FFE7EB);
+            padding: 50px 0 0; 
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            margin-bottom: 20px; /* Add space between hero and new section */
+        }
+        
+        .hero-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1440px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .text-container {
+            text-align: left;
+            max-width: 50%;
+            padding: 0 20px 20px 0;
+        }
+        .text-container h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: rgb(0, 0, 0);
+        }
+        .text-container p {
+            font-size: 18px;
+            color: rgb(0, 0, 0);
+            margin-bottom: 30px;
+            max-width: 400px;
+        }
+        .text-container .buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .text-container button {
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .text-container .btn-resume {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 10px 15px;
+            line-height: 26px;
+            font-size: 16px;
+            display: inline-block;
+            width: 202px;
+            height: 46px;
+            background-color: white;
+            color: #FA1239;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: #FA1239 8px 8px 8px;
+            margin-right: 5px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .text-container .btn-resume:hover{
+            transform: translateY(-1px);
+            box-shadow: 8px 8px 8px rgba(0,0,0,0.2);
+        }
+
+        .text-container .btn-contact {
+            width: 157px;
+            height: 46px;
+            background-color: #FA1239;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 22px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: normal;
+            box-shadow: 0 4px 10px rgba(250, 18, 57, 0.4);
+            background: linear-gradient(180deg, #ff4c6d 0%, #FA1239 100%);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .text-container .btn-contact:hover{
+            transform: translateY(-1px);
+            box-shadow: 0 6px 12px rgba(250, 18, 57, 0.6);
+        }
+        .rating {
+            display: none; 
+        }
+        .rating span {
+            margin-left: 5px;
+        }
+        
+        /* IMPORTANT: Make the image-container the positioning context */
+        .image-container {
+            max-width: 50%;
+            text-align: right;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            position: relative; /* This is essential for absolute positioning of children and pseudo-elements */
+        }
+        
+        /* --- BACKGROUND CIRCLE FIX (FINAL) --- */
+        .image-container::before {
+            content: '';
+            position: absolute;
+            top: 50%; 
+            left: 50%;
+            transform: translate(-40%, -50%); 
+            width: 450px; 
+            height: 450px;
+            border-radius: 50%; 
+            border: 5px solid rgba(253, 172, 185, 0.5); 
+            box-shadow: 0 0 0 50px rgba(253, 172, 185, 0.2); 
+            z-index: 0; 
+        }
+        
+        .image-container img {
+            max-width: 506px; 
+            height: auto;
+            vertical-align: bottom;
+            position: relative; 
+            z-index: 1;
+        }
+        
+        /* --- Floating Frame Styles (FIXED FOR PNGS) --- */
+        .floating-frame {
+            position: absolute;
+            z-index: 5; 
+            width: auto; 
+            height: auto;
+        }
+
+        /* Styles for the image inside the frame containers */
+        .floating-frame img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); 
+        }
+
+        /* Positioning the 4.9 Rating frame (assets/rating.png, 350x117) */
+        .rating-frame {
+            top: 55%; 
+            left: -100px;
+            transform: translateY(-50%); 
+            width: 350px; 
+            height: 117px; 
+        }
+
+        /* Positioning the 260+ Count frame (assets/frame260.png, 270x133) - SHIFTED UP 20PX */
+        .count-frame {
+            bottom: 20px; /* Changed from 0px to 20px */
+            right: -10px;
+            width: 270px;
+            height: 133px;
+        }
+        /* --- End Floating Frame Styles (FIXED) --- */
+        
+        /* --- NEW SECTION STYLES (What You Get Tag & Headline) --- */
+        .content-break {
+            width: 100%;
+            max-width: 1240px; /* Using the fill width of the headline */
+            margin: 0 auto 50px auto; /* Center with bottom margin */
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .what-you-get-tag {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 154px; /* Specified width */
+            height: 42px; /* Specified height */
+            background-color: #FD92A4; /* Specified light pink BG */
+            color: #000; 
+            font-size: 14px;
+            font-weight: 600; /* Semibold for prominence */
+            border-radius: 21px; /* Pill shape */
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .main-headline h2 {
+            font-size: 44px; /* Specified font size */
+            line-height: 55px; /* Specified line height */
+            font-weight: 600; /* Semibold */
+            color: #333; /* Dark text */
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-headline .highlight {
+            color: #FA1239; /* Specified primary red color */
+        }
+        /* --- END NEW SECTION STYLES --- */
+        
+        .section {
+            padding: 0 20px 80px;
+            background: #fff;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        .placard {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 300px; 
+            height: 450px;
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+        .placard img {
+            width: 300px;
+            height: 400px;
+            margin-bottom: 15px;
+        }
+        .placard h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            margin-top: 25px;
+        }
+        .placard p {
+            font-size: 14px;
+            color: #666;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+        @media (max-width: 1024px) {
+            .navbar-content {
+                width: 100%;
+            }
+            .nav-links {
+                display: none; 
+            }
+            .hero-content { flex-direction: column; text-align: center; }
+            .text-container, .image-container { max-width: 100%; }
+            .image-container { margin-top: 20px; align-items: center; }
+            .section { flex-wrap: wrap; justify-content: center; }
+            .placard { width: 40%; }
+            .floating-frame { display: none; } 
+            .rating { display: block; }
+            .image-container::before {
+                display: none;
+            }
+            .main-headline h2 {
+                font-size: 32px;
+                line-height: 40px;
+            }
+        }
+        @media (max-width: 768px) {
+            .hero { padding: 60px 0 0; }
+            .text-container h1 { font-size: 32px; }
+            .text-container p { font-size: 16px; }
+            .section { flex-direction: column; align-items: center; }
+            .placard { width: 80%; }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- HEADER/NAVBAR STRUCTURE -->
+    <header class="navbar-container">
+        <div class="navbar-content">
+            <a href="#" class="logo">
+                <div class="company-logo-icon">
+                    <img src="assets/LOGO.png" alt="Company Logo">
+                </div>
+                <div class="company-text-group">
+                    <span class="company-name">COMPANY</span>
+                    <span class="business-tagline">business tagline</span>
+                </div>
+            </a>
+            
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Services</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </nav>
+            
+            <button class="quote-button">Get A Quote</button>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <div class="text-container">
+                <h1>Your Resume <br><span style="color: #FA1239; text-decoration: double underline;">Deserves A Yes</span> Let's <br>Make It Happen</h1>
+                <p>If you're wondering how to impress recruiters, optimize your resume with our expert advice and HR-approved templates in 5 mins. Download your resume now!</p>
+                <div class="buttons">
+                    <button class="btn-resume">RESUME PACKAGES</button>
+                    <button class="btn-contact">CONTACT US</button>
+                </div>
+                <div class="rating">4.9 ⭐ <span>(260+ reviews)</span></div>
+            </div>
+            <div class="image-container">
+                <img src="assets/happywoman.png" alt="Person with books">
+                
+                <!-- NEW FLOATING FRAMES START HERE (UPDATED TO USE PNGS) -->
+                
+                <!-- 1. Ratings Frame (4.9) -->
+                <div class="floating-frame rating-frame">
+                    <img src="assets/rating.png" alt="4.9 Instructor Rating Frame">
+                </div>
+
+                <!-- 2. 260+ Count Frame (LIFTED 20px) -->
+                <div class="floating-frame count-frame">
+                    <img src="assets/frame260.png" alt="260+ Online Resumes Created Frame">
+                </div>
+                
+                <!-- NEW FLOATING FRAMES END HERE -->
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: WHAT YOU GET TAG AND HEADLINE -->
+    <section class="content-break">
+        <div class="what-you-get-tag">
+            What You Get
+        </div>
+        <div class="main-headline">
+            <h2>You're Not Just <span class="highlight">Another Applicant</span> And Your <br>Resume Shouldn't Look Like One</h2>
+        </div>
+    </section>
+    <!-- END NEW SECTION -->
+    
+    <section class="section">
+        <div class="placard">
+            <img src="assets/resume.png" alt="Resume Icon">
+            <h3>A Resume Format That Gets You Interviews</h3>
+            <p>Get a professionally written, keyword-optimized resume that lands in recruiter inboxes.</p>
+        </div>
+        <div class="placard">
+            <img src="assets/plane.png" alt="Cover Letter Icon">
+            <h3>A Cover Letter Style That Stands Out Strong</h3>
+            <p>Stand out with a cover letter that speaks directly to the role and reflects your strengths.</p>
+        </div>
+        <div class="placard">
+            <img src="assets/phone.png" alt="LinkedIn Profile Icon">
+            <h3>A LinkedIn Profile That Works For You</h3>
+            <p>Attract the right eyes, start conversations, and show up in recruiter searches.</p>
+        </div>
+        <div class="placard">
+            <img src="assets/talk.png" alt="Interview Strategy Icon">
+            <h3>An Interview Strategy That Builds Confidence</h3>
+            <p>Interview preparation with real HR professionals so you speak clearly confidently.</p>
+        </div>
+    </section>
+</body>
+</html>
