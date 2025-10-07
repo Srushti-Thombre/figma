@@ -22,7 +22,7 @@ This repository contains the code and design files for the "Resume Design" proje
 1. Clone the repository:
    git clone https://github.com/Srushti-Thombre/figma
 
-2. Open index.html (desktop version) or mobile.html (if separated) in a web browser.
+2. Open desktop.html or mobile.html in a web browser.
    For design reference, view the Figma project links provided below. 🔗
 
 ## Usage 🚀
@@ -43,4 +43,4 @@ https://figma1resumedesign.netlify.app/desktop.html
 
 ## Acknowledgments 🙏
 
-Thank you to the recruitment team of InfoTech for providing this internship opportunity. I am grateful for the chance to showcase my skills and look forward to the possibility of being selected. ✨
+Thank you to the recruitment team of InfoTech for providing this internship opportunity. I am grateful for the chance to showcase my skills. ✨
