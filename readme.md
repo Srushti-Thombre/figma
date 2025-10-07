@@ -39,6 +39,7 @@ Figma project links are provided below for design reference.
 ## Figma Project Links 🔗
 
 https://figma1resumedesign.netlify.app/mobile.html
+
 https://figma1resumedesign.netlify.app/desktop.html
 
 ## Acknowledgments 🙏
